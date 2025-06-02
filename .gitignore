@@ -1,0 +1,29 @@
+# Archivos temporales y backups comunes en Linux
+*~
+.nfs*
+.cache/
+*.swp
+*.swo
+*.bak
+*.tmp
+
+# Archivos de log
+*.log
+
+# Carpetas y archivos de editores comunes
+
+## VSCode
+.vscode/
+
+## JetBrains (PyCharm, IntelliJ, etc.)
+.idea/
+*.iml
+
+# Archivos binarios (por si acaso)
+*.out
+*.exe
+*.o
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
