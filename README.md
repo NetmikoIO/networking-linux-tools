@@ -1,82 +1,90 @@
 # Networking Linux Tools
 
-Repositorio con comandos útiles para análisis, configuración y reparación de redes en Linux.
+Repositorio con comandos esenciales para análisis, configuración y reparación de redes en Linux.  
+Ideal para técnicos y administradores que necesitan un kit rápido y confiable.
 
 ---
 
-## Índice
+## Índice automático
 
-1. [🧰 Herramientas de configuración y comprobación](./docs/herramientas.md)  
-2. [📡 Escaneo y análisis de red](./docs/escaneo.md)  
-3. [📄 Logs importantes para analizar errores](./docs/logs.md)  
-4. [🛠️ Solución de problemas y reparación](./docs/reparacion.md)  
-5. [🎯 Trucos útiles y recordatorios](./docs/trucos.md)  
-6. [🔍 Comandos básicos de diagnóstico](./docs/basicos.md)
-
----
-
-## 🔍 Comandos básicos de diagnóstico
-
-- [`dig <dominio>`](./docs/basicos.md#dig) — Consulta DNS detallada.  
-- [`host <dominio>`](./docs/basicos.md#host) — Resolución DNS básica.  
-- [`ip a` o `ip addr`](./docs/basicos.md#ip-a) — Muestra interfaces y direcciones IP.  
-- [`ip link`](./docs/basicos.md#ip-link) — Estado de interfaces de red.  
-- [`ip r` o `ip route`](./docs/basicos.md#ip-r) — Tabla de rutas.  
-- [`mtr <IP>`](./docs/basicos.md#mtr) — Diagnóstico continuo de red (mejor que traceroute).  
-- [`nslookup <dominio>`](./docs/basicos.md#nslookup) — Consulta DNS básica.  
-- [`ping <IP o dominio>`](./docs/basicos.md#ping) — Verifica conectividad.  
-- [`traceroute <IP o dominio>`](./docs/basicos.md#traceroute) — Muestra la ruta que siguen los paquetes.  
-- [`whois <dominio/IP>`](./docs/basicos.md#whois) — Información del dominio o IP.
+- [Comandos básicos de diagnóstico](#comandos-básicos-de-diagnóstico)
+- [Escaneo y análisis de red](#escaneo-y-análisis-de-red)
+- [Herramientas de configuración y comprobación](#herramientas-de-configuración-y-comprobación)
+- [Logs importantes para analizar errores](#logs-importantes-para-analizar-errores)
+- [Solución de problemas y reparación](#solución-de-problemas-y-reparación)
+- [Trucos útiles y recordatorios](#trucos-útiles-y-recordatorios)
 
 ---
 
-## 🧰 Herramientas de configuración y comprobación
+## Comandos básicos de diagnóstico
 
-- [`cat /etc/resolv.conf`](./docs/herramientas.md#cat-etc-resolv-conf) — Verifica servidores DNS usados.  
-- [`ifconfig`](./docs/herramientas.md#ifconfig) — Obsoleto pero útil en sistemas antiguos.  
-- [`iwconfig`](./docs/herramientas.md#iwconfig) — Configura interfaces WiFi antiguas (WEP/WPA1).  
-- [`nmcli`](./docs/herramientas.md#nmcli) — CLI para configurar NetworkManager.  
-- [`nmtui`](./docs/herramientas.md#nmtui) — Interfaz visual para configurar red.  
-- [`resolvectl status`](./docs/herramientas.md#resolvectl-status) — Diagnóstico DNS (systemd-resolved).
-
----
-
-## 📡 Escaneo y análisis de red
-
-- [`arp -a`](./docs/escaneo.md#arp-a) — Tabla ARP del sistema.  
-- [`ip neigh`](./docs/escaneo.md#ip-neigh) — Vecinos de red (similar a arp).  
-- [`netstat -tuln`](./docs/escaneo.md#netstat) — Puertos abiertos y servicios escuchando.  
-- [`nmap <IP o rango>`](./docs/escaneo.md#nmap) — Escáner de red (puertos, SO, servicios).  
-- [`ss -tuln`](./docs/escaneo.md#ss) — Alternativa moderna a netstat.  
-- [`tcpdump -i <interfaz>`](./docs/escaneo.md#tcpdump) — Sniffer de paquetes muy potente.  
-- [`wireshark`](./docs/escaneo.md#wireshark) — Interfaz gráfica para captura y análisis.
+| Comando                      | Descripción práctica                                                                               |
+|------------------------------|--------------------------------------------------------------------------------------------------|
+| [dig](./docs/dig.md)               | Consulta DNS avanzada, fundamental para diagnosticar problemas de resolución de nombres.          |
+| [host](./docs/host.md)              | Resuelve nombres DNS y muestra información simple sobre dominios.                                |
+| [ip](./docs/ip.md)                | Muestra interfaces y rutas, básico para conocer el estado y configuración actual de red.          |
+| [mtr](./docs/mtr.md)               | Diagnóstico dinámico y continuo de ruta, mezcla ping y traceroute, ideal para análisis en tiempo real. |
+| [nslookup](./docs/nslookup.md)           | Consulta DNS básica, rápida para verificar la IP de un dominio o viceversa.                      |
+| [ping](./docs/ping.md)              | Verifica si otro host responde, básico para comprobar conectividad y latencia.                   |
+| [traceroute](./docs/traceroute.md)        | Muestra ruta y saltos de paquetes, útil para detectar dónde se pierde la conexión.               |
+| [whois](./docs/whois.md)             | Obtiene información del registrante de dominio/IP, útil para investigación y auditoría.        |
 
 ---
 
-## 📄 Logs importantes para analizar errores
+## Escaneo y análisis de red
 
-- [`cat /var/log/messages`](./docs/logs.md#var-log-messages) — Logs generales.  
-- [`cat /var/log/syslog | grep -i network`](./docs/logs.md#var-log-syslog) — Logs relacionados con red.  
-- [`dmesg | grep -i eth`](./docs/logs.md#dmesg) — Mensajes del kernel relacionados con ethernet.  
-- [`journalctl -u NetworkManager`](./docs/logs.md#journalctl-networkmanager) — Logs del servicio NetworkManager.
-
----
-
-## 🛠️ Solución de problemas y reparación
-
-- [`rfkill list`](./docs/reparacion.md#rfkill-list) — Muestra bloqueo de WiFi o Bluetooth.  
-- [`sudo dhclient <interfaz>`](./docs/reparacion.md#sudo-dhclient) — Solicita IP vía DHCP para interfaz.  
-- [`sudo ethtool <interfaz>`](./docs/reparacion.md#sudo-ethtool) — Configuración hardware (velocidad, duplex).  
-- [`sudo ip link set <interfaz> up/down`](./docs/reparacion.md#sudo-ip-link-set) — Activa o desactiva interfaz.  
-- [`sudo lshw -C network`](./docs/reparacion.md#sudo-lshw) — Información detallada del hardware.  
-- [`sudo rfkill unblock all`](./docs/reparacion.md#sudo-rfkill-unblock) — Desbloquea todas las interfaces inalámbricas.  
-- [`sudo systemctl restart NetworkManager`](./docs/reparacion.md#sudo-systemctl-restart) — Reinicia servicio red (NetworkManager).
+| Comando                       | Descripción práctica                                                                           |
+|-------------------------------|-----------------------------------------------------------------------------------------------|
+| [arp -a](./docs/arp.md)                   | Muestra tabla ARP, ayuda a detectar problemas de resolución MAC-IP en la red local.          |
+| [ip neigh](./docs/ip.md)                      | Similar a arp, muestra vecinos y caché ARP, útil para diagnósticos rápidos.                  |
+| [nmap <IP o rango>](./docs/nmap.md)                 | Escáner de puertos y servicios, para auditorías de seguridad y descubrimiento de hosts.      |
+| [netstat -tuln](./docs/netstat.md)           | Lista puertos abiertos y servicios escuchando, para auditar servicios activos.               |
+| [ss -tuln](./docs/ss.md)                  | Versión moderna y más rápida que netstat para mostrar conexiones y puertos abiertos.         |
+| [tcpdump -i <interfaz>](./docs/tcpdump.md)             | Captura y análisis de tráfico en red, imprescindible para análisis profundo de paquetes.    |
+| [wireshark](./docs/wireshark.md)               | Interfaz gráfica para capturar y analizar tráfico, potente y fácil para técnicos con GUI.     |
 
 ---
 
-## 🎯 Trucos útiles y recordatorios
+## Herramientas de configuración y comprobación
 
-- Ver IP pública:  
+| Comando                      | Descripción práctica                                                                          |
+|------------------------------|----------------------------------------------------------------------------------------------|
+| [cat /etc/resolv.conf](./docs/resolv.conf.md) | Archivo clásico con servidores DNS, ideal para verificar configuraciones DNS.               |
+| [ifconfig](./docs/ifconfig.md)           | Comando clásico para mostrar/configurar interfaces, todavía útil en sistemas legacy.        |
+| [iwconfig](./docs/iwconfig.md)            | Configura interfaces WiFi antiguas, para redes inalámbricas básicas (WEP/WPA1).             |
+| [nmcli](./docs/nmcli.md)                | CLI potente para manejar NetworkManager, configurar conexiones y dispositivos.              |
+| [nmtui](./docs/nmtui.md)                | Interfaz textual para configuración rápida y visual de conexiones en distros con NM.        |
+| [resolvectl](./docs/resolvectl.md)          | Diagnóstico y control avanzado de DNS con systemd-resolved, imprescindible en sistemas modernos. |
+
+---
+
+## Logs importantes para analizar errores
+
+| Archivo / Comando                    | Descripción práctica                                                      |
+|------------------------------------|--------------------------------------------------------------------------|
+| `cat /var/log/messages`             | Logs generales de eventos del sistema, dependiendo de la distro.        |
+| `cat /var/log/syslog | grep -i network` | Logs generales del sistema filtrados para red, muy útil para debugging.   |
+| `dmesg | grep -i eth`               | Muestra mensajes del kernel relacionados con interfaces Ethernet.       |
+| `journalctl -u NetworkManager`      | Logs detallados del gestor de red NetworkManager.                        |
+
+---
+
+## Solución de problemas y reparación
+
+| Comando                          | Descripción práctica                                                                          |
+|----------------------------------|----------------------------------------------------------------------------------------------|
+| [sudo dhclient <interfaz>](./docs/dhclient.md)              | Solicita o renueva una IP vía DHCP para una interfaz, útil si no se obtiene IP automática.  |
+| [sudo ethtool <interfaz>](./docs/ethtool.md)                | Muestra y cambia parámetros físicos (velocidad, duplex), esencial para problemas de hardware. |
+| [sudo ip link set <interfaz> up/down](./docs/ip.md)          | Activa o desactiva una interfaz física, importante para reiniciar la conexión sin reboot.   |
+| [sudo lshw -C network](./docs/lshw.md)                      | Información detallada del hardware de red, ayuda a diagnosticar fallos físicos o drivers.   |
+| [sudo rfkill unblock all](./docs/rfkill.md)                 | Desbloquea todas las interfaces inalámbricas, solución rápida para errores por bloqueo.    |
+| [rfkill list](./docs/rfkill.md)                            | Muestra si WiFi o Bluetooth están bloqueados, causa común de desconexiones inalámbricas.    |
+| [sudo systemctl restart NetworkManager](./docs/systemctl.md) | Reinicia el gestor de red, paso común para solucionar problemas de conexión.                |
+
+---
+
+## Trucos útiles y recordatorios
+
+- **Ver IP pública rápidamente:**  
   ```bash
   curl ifconfig.me
-
